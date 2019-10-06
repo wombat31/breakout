@@ -36,8 +36,16 @@ function draw(){
         dx= -dx;
     }
 
-    if(y  - ballRadius < 0 || y + ballRadius> canvas.height) {
+    if(y  - ballRadius < 0 ){ 
         dy = -dy;
+    } else if (y + ballRadius> canvas.height) {
+        if(x > paddleX && x < paddleX + paddleWidth){
+            dy = -dy;
+        } else {
+        alert("GAME OVER");
+        document.location.reload();
+        clearInterval(interval);
+        }
     }
 
     if(rightPressed && paddleX + paddleWidth < canvas.width) {
@@ -71,4 +79,4 @@ function keyUpHandler(e){
 }
 
 
-setInterval(draw, 10);
+var interval = setInterval(draw, 10);
