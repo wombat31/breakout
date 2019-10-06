@@ -5,6 +5,9 @@ var y = canvas.height-30;
 var dx = 2;
 var dy = -2;
 var ballRadius = 10;
+var paddleHeight = 10;
+var paddleWidth = 75;
+var paddleX = (canvas.width-paddleWidth)/2;
 
 function drawBall(){
     ctx.beginPath();
@@ -14,9 +17,18 @@ function drawBall(){
     ctx.closePath();
 }
 
+function drawPaddle(){
+    ctx.beginPath();
+    ctx.rect(paddleX,canvas.height-paddleHeight, paddleWidth, paddleHeight);
+    ctx.fillStyle = "#0095DD";
+    ctx.fill();
+    ctx.closePath();
+}
+
 function draw(){
     ctx.clearRect(0,0, canvas.width, canvas.height);
     drawBall();
+    drawPaddle();
     //check whether the ball has hit the sides
     if(x + ballRadius > canvas.width || x - ballRadius < 0){
         dx= -dx;
